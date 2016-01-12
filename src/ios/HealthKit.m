@@ -19,6 +19,7 @@ static NSString *const HKPluginKeyCorrelationType = @"correlationType";
 static NSString *const HKPluginKeyObjects = @"samples";
 static NSString *const HKPluginKeySourceName = @"sourceName";
 static NSString *const HKPluginKeySourceBundleId = @"sourceBundleId";
+static NSString *const HKPluginKeyDeviceName = @"deviceName";
 static NSString *const HKPluginKeyMetadata = @"metadata";
 static NSString *const HKPluginKeyUUID = @"UUID";
 
@@ -783,6 +784,13 @@ static NSString *const HKPluginKeyUUID = @"UUID";
                                                                   [df stringFromDate:startSample], HKPluginKeyStartDate,
                                                                   [df stringFromDate:endSample], HKPluginKeyEndDate,
                                                                   nil];
+
+                                    if ([sample respondsToSelector:@selector(device)] &&
+                                      [sample.device respondsToSelector:@selector(name)]) {
+                                      [entry setValue:sample.device.name forKey:HKPluginKeyDeviceName];
+                                    } else {
+                                      [entry setValue:@"" forKey:HKPluginKeyDeviceName];
+                                    }
                                     
                                     if ([sample isKindOfClass:[HKCategorySample class]]) {
                                       HKCategorySample *csample = (HKCategorySample *)sample;
