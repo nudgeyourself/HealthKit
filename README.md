@@ -25,6 +25,7 @@
 * `saveWorkout`
 * `findWorkouts`: no params yet, so this will return all workouts ever of any type
 * `querySampleType`
+* `querySampleTypeAggregated`
 * `sumQuantityType`
 * `monitorSampleType`
 * `saveQuantitySample`
@@ -49,8 +50,8 @@ Using the Cordova CLI?
 cordova plugin add com.telerik.plugins.healthkit
 ```
 
-Using PGB?
+Using PhoneGap Build?
 
 ```xml
-<gap:plugin name="com.telerik.plugins.healthkit" source="npm" />
+<plugin name="com.telerik.plugins.healthkit" source="npm" />
 ```
